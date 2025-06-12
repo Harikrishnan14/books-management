@@ -22,9 +22,9 @@ const Dashboard = () => {
                         <input
                             type="text"
                             placeholder="Search books..."
-                            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent w-full max-w-xs"
+                            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent max-w-xs"
                         />
-                        <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 hover:cursor-pointer rounded text-base mt-4 md:mt-0" onClick={() => handleOpenModal("add")}>Add New
+                        <button className="inline-flex items-center bg-green-500 border-0 py-1 px-3 focus:outline-none hover:bg-green-600 hover:cursor-pointer rounded text-white" onClick={() => handleOpenModal("add")}>Add New
                             <svg
                                 className="w-4 h-4 ml-1"
                                 fill="none"
