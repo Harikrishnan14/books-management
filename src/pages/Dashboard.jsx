@@ -1,4 +1,6 @@
 import React from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Dashboard = () => {
     return (
@@ -15,6 +17,14 @@ const Dashboard = () => {
                                 <h2 className="text-gray-900 title-font text-lg font-medium">Title ( Year )</h2>
                                 <p className="mt-1">Genre</p>
                                 <p className="mt-1 text-gray-900">Status</p>
+                            </div>
+                            <div className="flex flex-row gap-2 mt-3">
+                                <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm">
+                                    <EditIcon />
+                                </button>
+                                <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm">
+                                    <DeleteIcon />
+                                </button>
                             </div>
                         </div>
                     ))}
