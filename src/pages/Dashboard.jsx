@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteModal from '../components/modals/DeleteModal';
+import ManageBookModal from '../components/modals/ManageBookModal';
 
 const Dashboard = () => {
 
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+
     const handleOpenDeleteModal = () => setOpenDeleteModal(true);
-    const handleCloseDeletModal = () => setOpenDeleteModal(false);
+    const handleCloseDeleteModal = () => setOpenDeleteModal(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
 
     return (
         <>
@@ -19,7 +24,7 @@ const Dashboard = () => {
                             placeholder="Search books..."
                             className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent w-full max-w-xs"
                         />
-                        <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 hover:cursor-pointer rounded text-base mt-4 md:mt-0">Add New
+                        <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 hover:cursor-pointer rounded text-base mt-4 md:mt-0" onClick={() => handleOpenModal("add")}>Add New
                             <svg
                                 className="w-4 h-4 ml-1"
                                 fill="none"
@@ -45,7 +50,7 @@ const Dashboard = () => {
                                     <p className="mt-1 text-gray-900">Status</p>
                                 </div>
                                 <div className="flex flex-row gap-2 mt-3">
-                                    <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm">
+                                    <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenModal("edit")}>
                                         <EditIcon />
                                     </button>
                                     <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenDeleteModal()}>
@@ -58,7 +63,9 @@ const Dashboard = () => {
                 </div>
             </section>
 
-            <DeleteModal open={openDeleteModal} handleClose={handleCloseDeletModal} />
+            <DeleteModal open={openDeleteModal} handleClose={handleCloseDeleteModal} />
+            <ManageBookModal open={openModal} handleClose={handleCloseModal} />
+
         </>
     )
 }
