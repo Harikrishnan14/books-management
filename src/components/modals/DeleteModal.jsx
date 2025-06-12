@@ -33,7 +33,7 @@ const DeleteModal = ({ open, handleClose }) => {
                 <h3>Do you want to delete?</h3>
                 <div className='flex align-center justify-center w-full gap-6'>
                     <button className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition hover:cursor-pointer" onClick={handleClose}>Cancel</button>
-                    <button className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition hover:cursor-pointer" onClick={() => handleDelete()}>Confirm</button>
+                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition hover:cursor-pointer" onClick={() => handleDelete()}>Confirm</button>
                 </div>
             </Box>
         </Modal>
