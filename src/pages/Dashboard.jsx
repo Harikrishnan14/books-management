@@ -5,7 +5,14 @@ import EditIcon from '@mui/icons-material/Edit';
 const Dashboard = () => {
     return (
         <section className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
+            <div className="container px-5 md:py-10 py-10 mx-auto">
+                <div className="flex justify-center md:justify-end mb-12">
+                    <input
+                        type="text"
+                        placeholder="Search books..."
+                        className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent w-full max-w-xs"
+                    />
+                </div>
                 <div className="flex flex-wrap -m-4">
                     {Array.from({ length: 12 }).map((_, index) => (
                         <div className="lg:w-1/4 md:w-1/2 p-4 w-full" key={index}>
