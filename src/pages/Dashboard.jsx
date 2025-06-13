@@ -15,6 +15,8 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedId, setSelectedId] = useState(null);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedType, setSelectedType] = useState(null);
 
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -28,7 +30,15 @@ const Dashboard = () => {
     }
 
     const handleCloseDeleteModal = () => setOpenDeleteModal(false);
-    const handleOpenModal = () => setOpenModal(true);
+
+    const handleOpenModal = (type, item) => {
+        setSelectedType(type);
+        if (type === "edit") {
+            setSelectedItem(item)
+        }
+        setOpenModal(true);
+    }
+
     const handleCloseModal = () => setOpenModal(false);
 
     const handlePageChange = (event, value) => {
@@ -100,11 +110,11 @@ const Dashboard = () => {
                                         <h2 className="text-gray-900 title-font text-lg font-medium">{book?.title} ( {book?.published_at} )</h2>
                                         <p className="mt-1">{book?.genre}</p>
                                         <p className="mt-1 text-gray-900">
-                                            {book?.status?.charAt(0).toUpperCase() + book?.status?.slice(1)}
+                                            {book?.status}
                                         </p>
                                     </div>
                                     <div className="flex flex-row gap-2 mt-3">
-                                        <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenModal("edit")}>
+                                        <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenModal("edit", book)}>
                                             <EditIcon />
                                         </button>
                                         <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenDeleteModal(book?._id)}>
@@ -130,7 +140,7 @@ const Dashboard = () => {
             </section>
 
             <DeleteModal open={openDeleteModal} handleClose={handleCloseDeleteModal} selectedId={selectedId} fetchData={fetchData} />
-            <ManageBookModal open={openModal} handleClose={handleCloseModal} />
+            <ManageBookModal open={openModal} handleClose={handleCloseModal} selectedItem={selectedItem} selectedType={selectedType} fetchData={fetchData} setSelectedItem={setSelectedItem} />
 
         </>
     )
