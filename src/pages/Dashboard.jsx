@@ -103,7 +103,7 @@ const Dashboard = () => {
                             currentItems?.map((book) => (
                                 <div className="lg:w-1/4 md:w-1/2 p-4 w-full" key={book._id}>
                                     <a className="block relative h-48 rounded overflow-hidden">
-                                        <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260" />
+                                        <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small_2x/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg" />
                                     </a>
                                     <div className="mt-4">
                                         <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{book?.author}</h3>
