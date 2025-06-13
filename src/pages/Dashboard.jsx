@@ -17,6 +17,7 @@ const Dashboard = () => {
     const [selectedId, setSelectedId] = useState(null);
     const [selectedItem, setSelectedItem] = useState(null);
     const [selectedType, setSelectedType] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -75,6 +76,8 @@ const Dashboard = () => {
                         <input
                             type="text"
                             placeholder="Search books..."
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            value={searchTerm}
                             className="px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-transparent max-w-xs"
                         />
                         <button className="inline-flex items-center bg-green-500 border-0 py-1 px-3 focus:outline-none hover:bg-green-600 hover:cursor-pointer rounded text-white" onClick={() => handleOpenModal("add")}>Add New
@@ -100,7 +103,9 @@ const Dashboard = () => {
                                 <span className="text-gray-700 text-xl title-font font-medium">No Data!!!</span>
                             </div>
                         ) : (
-                            currentItems?.map((book) => (
+                            currentItems?.filter((book) =>
+                                book.title.toLowerCase().includes(searchTerm.toLowerCase())
+                            )?.map((book) => (
                                 <div className="lg:w-1/4 md:w-1/2 p-4 w-full" key={book._id}>
                                     <a className="block relative h-48 rounded overflow-hidden">
                                         <img alt="ecommerce" className="object-cover object-center w-full h-full block" src="https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small_2x/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg" />
