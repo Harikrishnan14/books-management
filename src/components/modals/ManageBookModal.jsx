@@ -47,7 +47,7 @@ const ManageBookModal = ({ open, handleClose, selectedItem, selectedType, fetchD
         onSubmit: async (values, { setSubmitting, resetForm }) => {
             try {
                 if (selectedType === "edit") {
-                    const response = await axios.put(`https://crudcrud.com/api/08ad02d63b9c4eb78e6b428f2934fb95/books/${selectedItem._id}`, values)
+                    const response = await axios.put(`https://crudcrud.com/api/29c302eb1cfd4d188bf74bb0a3434ffc/books/${selectedItem._id}`, values)
                     if (response.status === 200) {
                         toast.success('Successfully Updated', {
                             position: "top-right",
@@ -62,7 +62,7 @@ const ManageBookModal = ({ open, handleClose, selectedItem, selectedType, fetchD
                         });
                     }
                 } else {
-                    const response = await axios.post("https://crudcrud.com/api/08ad02d63b9c4eb78e6b428f2934fb95/books", values)
+                    const response = await axios.post("https://crudcrud.com/api/29c302eb1cfd4d188bf74bb0a3434ffc/books", values)
                     if (response.status === 200) {
                         toast.success('Successfully Added', {
                             position: "top-right",

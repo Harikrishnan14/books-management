@@ -27,7 +27,7 @@ const DeleteModal = ({ open, handleClose, selectedId, fetchData }) => {
     const handleDelete = async () => {
         setLoading(true)
         try {
-            const response = await axios.delete(`https://crudcrud.com/api/08ad02d63b9c4eb78e6b428f2934fb95/books/${selectedId}`)
+            const response = await axios.delete(`https://crudcrud.com/api/29c302eb1cfd4d188bf74bb0a3434ffc/books/${selectedId}`)
             if (response.status === 200) {
                 toast.success('Successfully Deleted', {
                     position: "top-right",
