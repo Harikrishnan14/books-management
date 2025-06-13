@@ -14,6 +14,7 @@ const Dashboard = () => {
     const [booksData, setBooksData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedId, setSelectedId] = useState(null);
 
     const itemsPerPage = 10;
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -21,7 +22,11 @@ const Dashboard = () => {
     const currentItems = booksData.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(booksData.length / itemsPerPage);
 
-    const handleOpenDeleteModal = () => setOpenDeleteModal(true);
+    const handleOpenDeleteModal = (id) => {
+        setSelectedId(id);
+        setOpenDeleteModal(true);
+    }
+
     const handleCloseDeleteModal = () => setOpenDeleteModal(false);
     const handleOpenModal = () => setOpenModal(true);
     const handleCloseModal = () => setOpenModal(false);
@@ -33,7 +38,7 @@ const Dashboard = () => {
     const fetchData = async () => {
         setLoading(true)
         try {
-            const response = await axios.get("https://crudcrud.com/api/29c302eb1cfd4d188bf74bb0a3434ffc/books")
+            const response = await axios.get("https://crudcrud.com/api/08ad02d63b9c4eb78e6b428f2934fb95/books")
             if (response.data) {
                 setBooksData(response.data)
             }
@@ -102,7 +107,7 @@ const Dashboard = () => {
                                         <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenModal("edit")}>
                                             <EditIcon />
                                         </button>
-                                        <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenDeleteModal()}>
+                                        <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition hover:cursor-pointer text-sm" onClick={() => handleOpenDeleteModal(book?._id)}>
                                             <DeleteIcon />
                                         </button>
                                     </div>
@@ -110,7 +115,7 @@ const Dashboard = () => {
                             ))
                         )}
                     </div>
-                    {!loading && booksData.length > 0 && (
+                    {!loading && booksData.length > 10 && (
                         <div className="flex justify-center mt-10">
                             <Pagination
                                 count={totalPages}
@@ -124,7 +129,7 @@ const Dashboard = () => {
                 </div>
             </section>
 
-            <DeleteModal open={openDeleteModal} handleClose={handleCloseDeleteModal} />
+            <DeleteModal open={openDeleteModal} handleClose={handleCloseDeleteModal} selectedId={selectedId} fetchData={fetchData} />
             <ManageBookModal open={openModal} handleClose={handleCloseModal} />
 
         </>
